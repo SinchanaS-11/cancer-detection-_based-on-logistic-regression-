@@ -7,9 +7,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 
 
-# ============================================================
+
 # 1. LOAD DATASET
-# ============================================================
 
 data = load_breast_cancer()
 
@@ -20,9 +19,8 @@ y = data.target
 # 1 = benign
 
 
-# ============================================================
+
 # 2. TRAIN / TEST SPLIT
-# ============================================================
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
@@ -33,9 +31,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 
-# ============================================================
+
 # 3. FEATURE SCALING
-# ============================================================
+
 
 scaler = StandardScaler()
 
@@ -43,18 +41,16 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 
-# ============================================================
+
 # 4. TRAIN MODEL
-# ============================================================
+
 
 model = LogisticRegression(max_iter=1000)
 
 model.fit(X_train_scaled, y_train)
 
 
-# ============================================================
 # 5. PREDICTION FUNCTION
-# ============================================================
 
 def predict_cancer(
     mean_radius,
@@ -158,9 +154,8 @@ def predict_cancer(
     return result, message
 
 
-# ============================================================
+
 # 6. GRADIO UI
-# ============================================================
 
 with gr.Blocks(title="Breast Cancer Detection") as demo:
 
@@ -381,9 +376,7 @@ with gr.Blocks(title="Breast Cancer Detection") as demo:
     )
 
 
-# ============================================================
 # 7. LAUNCH APP
-# ============================================================
 
 if __name__ == "__main__":
     demo.launch()
